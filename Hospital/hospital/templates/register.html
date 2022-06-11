@@ -1,0 +1,60 @@
+{% extends 'index-2.html' %}
+{% block content %}
+{% load static %}
+<style>
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+          color: black;
+          opacity: 1; /* Firefox */
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: black;
+        }
+
+        ::-ms-input-placeholder { /* Microsoft Edge */
+          color: black;
+        }
+        input{
+            color:#000b46;
+         }
+        .errors{
+        color:white;
+        }
+
+</style>
+
+<center>
+    <div class="breadcumb-area bg-img gradient-background-overlay "
+         style="height:700px;background-image: url({% static 'img/bg-img/breadcumb2.jpg'%});"><br>
+        <h2 style="text-transform:uppercase">{{name}} register</h2><br>
+        <div class="login-form" style="height:1200px;">
+            <form method="POST">
+                {% csrf_token %}
+                <!--                    <input style="color:#000b46" autocomplete="off" name="name" class="form-login" placeholder="Name" type="text" required="required"><br>-->
+                <!--                    <input autocomplete="off" style="color:#000b46" name="email" class="form-login" type="email" placeholder="Email" required="required"><br>-->
+                <!--                    <input autocomplete="off" name="phone" style="color:#000b46" class="form-login" placeholder="Phone" type="number" required="required"><br>-->
+                <!--                    <input autocomplete="off" name="gender" class="form-login" style="color:#000b46" type="text" placeholder="Gender" required="required"><br>-->
+                <!--                    <input autocomplete="off" name="location" class="form-login" placeholder="Location" style="color:#000b46" type="text" required="required"><br>-->
+                <!--                    <input autocomplete="off" name="password" class="form-login" type="password" placeholder="Password" style="color:#000b46" required="required"><br>-->
+                <div class="single-hero-slide bg-img bg-overlay-white"
+                     style="background-image: url({% static 'img/bg-img/hero1.jpg' %});">
+
+                    {% for field in form %}
+
+                    <div class="fieldWrapper">
+                        <p class="help">{{ field.errors }}</p>
+                        {{field.class}}
+                        {{ field.label_tag }} {{ field }}
+                        {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <input type="submit" class="btn medilife-btn">
+                </div>
+            </form>
+        </div>
+    </div>
+</center>
+<img src="{% static 'img/bg-img/hero1.jpg' %}" alt="">
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'patient_page.html' %}
+{% block content %}
+{% load static %}
+
+	<div class="limiter" style="background-size:cover;background-image: url({% static 'img/bg-img/about1.jpg'%}">
+		<div>
+			{% for m in messages %}
+				<p style="font-size:20px;text-transform:uppercase;top:25%;left:45%;position:absolute"><i>{{m}}</i></p><br><br>
+			{% endfor %}
+		</div>
+
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Patient_Id</th>
+								<th class="column2">Date</th>
+								<th class="column3">Time</th>
+								<th class="column4">Name</th>
+								<th class="column5">Phone</th>
+								<th class="column6">Problems</th>
+                                <th class="column7">Lab Report</th>
+                                <th class="column8">Prescription</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for d in data %}
+								<tr>
+									<td class="column1">{{d.patient_id}}</td>
+									<td class="column2">{{d.date}}</td>
+									<td class="column3">{{d.time}}</td>
+									<td class="column4">{{d.name}}</td>
+									<td class="column5">{{d.phone}}</td>
+									<td class="column6">{{d.problems}}</td>
+									{% if d.report_boolean is False %}
+										<td class="column7"><a href="/request/{{d.patient_id}}" id="request" onclick="document.getElementById('request').innerHTML='request sented'">request to lab</a></td>
+									{% endif %}
+									{% if d.report_boolean is True %}
+										<td class="column7"><a href="{{d.report.url}}">download</a></td>
+									{% endif %}
+									{% if d.prescription_boolean is False %}
+										<td class="column8">Waiting</td>
+									{% endif %}
+									{% if d.prescription_boolean is True %}
+										<td class="column8"><a href="/download/{{d.prescription}}">download</a></td>
+									{% endif %}
+
+								</tr>
+                            {% endfor %}
+                        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock %}

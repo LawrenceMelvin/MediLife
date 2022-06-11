@@ -1,0 +1,41 @@
+{% extends 'lab_page.html' %}
+{% block content %}
+{% load static %}
+
+      	<div class="limiter" style="background-size:cover;background-image: url({% static 'img/bg-img/about1.jpg'%}">
+                    <div>
+                            {% for m in messages %}
+
+                              <p style="font-size:20px;text-transform:uppercase;top:25%;left:45%;position:absolute"><i>{{m}}</i></p>
+                            {% endfor %}
+                        </div>
+
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Patient Id</th>
+								<th class="column6">Problems</th>
+                                <th class="column7">Report details</th>
+								<th>Report File</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for d in data %}
+								<tr>
+									<td class="column1">{{d.patient_id}}</td>
+									<td class="column6">{{d.problems}}</td>
+									<td class="column6">{{d.report_details}}</td>
+                                    <td><a href="/download/{{d.file}}">download</a></td>
+								</tr>
+                            {% endfor %}
+                        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

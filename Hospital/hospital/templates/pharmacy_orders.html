@@ -1,0 +1,81 @@
+{% extends 'pharmacy_page.html' %}
+{% block content %}
+{% load static %}
+
+<div class="limiter" style="background-size:cover;background-image: url({% static 'img/bg-img/about1.jpg'%}">        <div>
+
+                            {% for m in messages %}
+	        <p style="font-size:20px;text-transform:uppercase;top:35%;left:40%;position:absolute"><i>{{m}}</i></p><br><br>
+
+                            {% endfor %}
+                        </div>
+
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Patient Id</th>
+								<th class="column2">Patient Name</th>
+								<th class="column3">Patient Email</th>
+								<th class="column4">Patient Phone</th>
+								<th class="column3">Doctor </th>
+								<th class="column4">Doctor Email</th>
+								<th class="column4">Prescription</th>
+								<th class="column4">Request</th>
+								<th>order</th>
+								<th>order status</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for d in data %}
+								<tr>
+									<td class="column1">{{d.patient_id}}</td>
+									<td class="column2">{{d.patient_name}}</td>
+									<td class="column3">{{d.patient_email}}</td>
+									<td class="column5">{{d.patient_phone}}</td>
+									<td class="column6">{{d.doctor}}</td>
+									<td class="column6">{{d.doctor_email}}</td>
+									<td class="column6"><a href="{% url 'download' d.file %} ">download</a></td>
+									<td class="column6"><a onclick="document.getElementById('tabletupload').style.display='block'">Pharmacy</a></td>
+									{% if d.order_status is False %}
+										<th><a href="/confirm_order/{{name}}/{{d.pk}}">confirm order</a></th>
+									{% endif %}
+									{% if d.order_status is True %}
+										<th>Amount-{{d.amount}}</th>
+									{% endif %}
+
+									{% if d.delivery is False %}
+										<td>Waiting</a></td>
+									{% endif %}
+									{% if d.delivery is True %}
+										<td>paid | deliverd</td>
+									{% endif %}
+									<center>
+
+<div class="file anim" id="tabletupload" style="background-image:url({% static 'img/bg-img/breadcumb2.jpg'%});background-size:cover;">
+    <br><br><br><br><br><br><br>
+    <span onclick="document.getElementById('tabletupload').style.display='none'" style="top:25%" class="close" title="close">&times;</span><br>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="login-form bg-text">
+            <h3>enter your tablet name</h3>
+			<input type="text" hidden name="patient_id" value="{{d.patient_id}}">
+			<input name="tablet" class="form-login" type="text" placeholder="tablet"><br>
+            <input name="dosage" class="form-login" type="text" placeholder="dosage"><br>
+            <input type="submit" class="btn medilife-btn">
+        </div>
+    </form>
+</div></center>
+
+								</tr>
+                            {% endfor %}
+                        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

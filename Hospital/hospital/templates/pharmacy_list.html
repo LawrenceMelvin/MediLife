@@ -1,0 +1,41 @@
+{% extends 'admin_page.html' %}
+
+    {% load static %}
+    {% block content %}
+      	<div class="limiter" style="background-size:cover;background-image: url({% static 'img/bg-img/about1.jpg'%}">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr style="color:white;text-transform:capitalize" class="table100-head">
+                              <td>Id</td>
+                                <td>Pharmacy Name</td>
+
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Location</td>
+                                <td>Phone</td>
+                                <td>Gender</td>
+                                </tr>
+						</thead>
+						<tbody>
+                            {% for m in data %}
+								<tr>
+                                  <td>{{m.pk}}</td>
+									<td>{{m.pharmacy}} pharmacy</td>
+
+                                    <td>{{m.name}}</td>
+                                    <td>{{m.email}}</td>
+                                    <td>{{m.location}}</td>
+                                    <td>{{m.phone}}</td>
+                                    <td>{{m.gender}}</td>
+								</tr>
+                            {% endfor %}
+                        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+    {% endblock %}

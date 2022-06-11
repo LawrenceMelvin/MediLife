@@ -1,0 +1,30 @@
+drug_name,dosage,problem,disease severity,age
+tramadol,50,pain,1,all
+norco,50,pain,2,all
+Ibuprofen,50,pain,2,all
+naproxen,50,pain,2,all
+tramadol,100,pain,1,all
+norco,100,pain,3,
+Ibuprofen,100,pain,3,
+naproxen,100,pain,3,
+ultram,50,pain,2,
+ultram,100,pain,3,
+paracetomal,100,fever & ache,1,10
+Acetaminophen,100,fever,1,10
+paracetomal,250,fever & ache,2,20
+Acetaminophen,250,fever,2,20
+paracetomal,500,fever & ache,2,
+Acetaminophen,500,fever,3,
+tylenol,250,fever,2,15
+tylenol,500,fever,3,
+asprin,500,fever,3,
+asprin,250,fever,2,15
+ecotrin,500,fever,2,15
+ naproxen,100,headache,2,
+diphenhydramine,100,cold,2,
+pseudoephedrine,30,cold,2,10
+phenylephrine,10,cold,1,15
+pseudoephedrine,50,cold,1,
+acetaminophen,50,"fever,cold&ache",2,10
+Glyact-G1,500mg,diabetes,3,
+thioretes,500mg,diabetes,3,

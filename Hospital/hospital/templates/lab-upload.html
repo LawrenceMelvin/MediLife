@@ -1,0 +1,28 @@
+{% extends 'lab_page.html' %}
+{% block content %}
+{% load static %}
+
+    <div class="breadcumb-area bg-img gradient-background-overlay " style="height:700px;background-image: url({% static 'img/bg-img/breadcumb2.jpg'%});"><br>
+        <div>
+
+        {% for m in messages %}
+             <p style="font-size:20px;text-transform:uppercase;top:33%;left:42%;position:absolute"><i>{{m}}</i></p><br><br><br><br>
+	    {% endfor %}
+    </div> <center>
+        <h2 style="text-transform:uppercase">lab entry</h2><br>
+        <div class="login-form">
+
+              <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token  %}
+                    <input name="patient_id" class="form-login" type="text" placeholder="Patient Id" autocomplete="off" required="required"><br>
+                    <input name="problems" class="form-login" type="text" placeholder="Problem" autocomplete="off" required="required"><br>
+                    <input name="report" class="form-login" type="text" placeholder="Report details" autocomplete="off" required="required"><br>
+                    <input type="file"  name="file" style="width:100px"><br><br>
+                    <input type="submit" class="btn medilife-btn" >
+              </form>
+        </div>
+
+        <a href="/{{name}}_register/">New User Registration</a><br><br></center>
+    </div>
+
+{% endblock %}

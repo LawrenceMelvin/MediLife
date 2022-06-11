@@ -1,0 +1,5 @@
+django
+mysqlclient
+sklearn
+numpy
+pandas

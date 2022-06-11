@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function add(){
+          var table = document.getElementById("tableone");
+          var rowlength=table.rows.length;
+          var x=rowlength-1
+          var row = table.insertRow(rowlength);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          cell1.innerHTML = "<input type='text' name='name[x]'>";
+          cell2.innerHTML = x;
+          }
+
+    </script>
+</head>
+<body>
+	<div class="limiter" style="background-size:cover;background-image: url({% static 'img/bg-img/about1.jpg'%}">
+
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table id="tableone">
+						<thead>
+                        <tr>
+							<th class="column1">Tablet name</th>
+                            <th class="column2">Tablet power(mg)</th>
+                            <th class="column3">Morning</th>
+                            <th class="column4">Afternoon</th>
+                            <th class="column5">Evening</th>
+                            <th class="column6">Problems</th>
+                            <th class="column8">Action</th>
+                            </tr>
+						</thead>
+						<tbody>
+                        <form method="POST">
+                            {% csrf_token %}
+								<tr>
+									<td class="column1"><input type="text" name="name[0]"></td>
+									<td class="column2"><input type="text" name="power[0]"></td>
+									<td class="column3"><input type="text" name="morning[0]"></td>
+									<td class="column4"><input type="text" name="afternoon[0]"></td>
+									<td class="column5"><input type="text" name="evening[0]"></td>
+									<td class="column6"><input type="text" name="problems[0]"></td>
+									<td class="column7"></td>
+									<td class="column8"><a href="/doctor_action/{{d.patient_id}}">action</a></td>
+								</tr>
+							    <tr>
+                            		<input type="submit">
+								</tr>
+                        </form>
+                        <button id="add" onclick="add()">download</button>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

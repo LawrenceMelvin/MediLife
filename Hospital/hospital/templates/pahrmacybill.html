@@ -1,0 +1,57 @@
+{% extends 'patient_page.html' %}
+{% block content %}
+{% load static %}
+<div class="limiter" style="background-size:cover;background-image: url({% static 'img/bg-img/about1.jpg'%}">
+  <div>
+
+    {% for m in messages %}
+      <p style="font-size:20px;text-transform:uppercase;top:35%;left:40%;position:absolute"><i>{{m}}</i></p><br><br>
+    {% endfor %}
+  </div>
+
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Id</th>
+								<th class="column2">Name</th>
+								<th class="column4">Phone</th>
+								<th class="column4">Prescription</th>
+								<th>Order status</th>
+								<th>Amount</th>
+                               <th>Pay</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {% for d in data %}
+								<tr>
+									<td class="column1">{{d.patient_id}}</td>
+									<td class="column2">{{d.patient_name}}</td>
+									<td class="column5">{{d.patient_phone}}</td>
+									<td class="column6"><a href="{% url 'download' d.file %} ">download</a></td>
+                                  {% if d.order_status is True %}
+                                  <td>confirmed</td>
+                                   <td>{{d.amount}}</td>
+                                    {% if d.delivery is False %}
+                                      <td><a href="/pay/{{d.pk}}">pay</a></td>
+                                    {% endif %}
+                                    {% if d.delivery is True %}
+                                      <td>paid</td>
+                                    {% endif %}
+                                  {% endif %}
+                                  {% if d.order_status is False%}
+                                    <td>waiting</td>
+                                    <td>waiting</td>
+                                    <td>waiting</td>
+                                  {% endif %}
+								</tr>
+                            {% endfor %}
+                        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

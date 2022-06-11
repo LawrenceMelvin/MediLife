@@ -1,0 +1,30 @@
+.form-login {
+  background-color: transparent;
+  width: 200px;
+  height: 38px;
+  border-radius: 0;
+  font-size: 14px;
+  font-style: italic;
+  color: #ffffff;
+  margin-bottom: 30px;
+  font-weight: 500;
+  padding: 0 15px;
+  border: 2px solid #536174;
+}
+  .form-login::hover, .form-login:::focus {
+    background-color: transparent;
+    box-shadow: none; }
+
+.login-form input[type="submit"]{
+    color: #536174;
+    font-weight: 500;
+    border: 2px solid #536174;
+    padding:1px 20px;
+}
+.login-form input[type="submit"]:hover,input[type="submit"]:focus {
+    color: #ffffff;
+    background-color: #536174;
+    font-weight: 500;
+    border: 2px solid #ffffff;
+    padding:1px 20px;
+}

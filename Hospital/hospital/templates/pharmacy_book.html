@@ -1,0 +1,34 @@
+{% extends 'patient_page.html' %}
+{% block content %}
+{% load static %}
+<div class="message">
+    {% for m in messages %}
+        <p><i>{{m}}</i></p>
+    {% endfor %}
+</div>
+    <div class="breadcumb-area bg-img gradient-background-overlay " style="height:500px;background-image: url({% static 'img/bg-img/breadcumb2.jpg'%});"><br>
+        <div>
+                            {% for m in messages %}
+
+        <p style="font-size:20px;text-transform:uppercase;top:35%;left:40%;position:absolute"><i>{{m}}</i></p><br><br>
+                            {% endfor %}
+                        </div>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="pharmacy_form">
+
+        {% csrf_token %}
+        <div class="login-form">
+            <br><center><h3>Pharmacy</h3></center>
+            <select class="dropdown" style="width:300px;" name="pharmacy">
+                <option selected disabled>select pharmacy</option>
+                <option value="pharmacy_1">Pharmacy 1</option>
+                <option value="pharmacy_2">Pharmacy 2</option>
+                <option value="pharmacy_3">Pharmacy 3</option>
+            </select>
+            <br><br><input autocomplete="off" type="text" class="form-login" name="patient_id" style="width:270px;margin:5px;" placeholder="patient id"><br><br>
+            <input type="file" autocomplete="off" name="file" style="width:270px;margin:5px;"><br>
+            <center><input type="submit" style="margin:5px;" class="btn medilife-btn"></center>
+        </div></div>
+    </form>
+    </div>
+{% endblock %}

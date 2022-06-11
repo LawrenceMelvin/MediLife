@@ -1,0 +1,45 @@
+{% extends 'index-2.html' %}
+{% block content %}
+{% load static %}
+    <style>
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+          color: black;
+          opacity: 1; /* Firefox */
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: black;
+        }
+
+        ::-ms-input-placeholder { /* Microsoft Edge */
+          color: black;
+        }
+    </style>
+<center>
+
+    <div class="breadcumb-area bg-img gradient-background-overlay "
+         style="height:550px;background-image: url({% static 'img/bg-img/breadcumb2.jpg'%});"><br>
+        <div>
+            {% for m in messages %}
+            <center>
+                <p style="font-size:20px;text-transform:uppercase;"><i>{{m}}</i></p></center>
+            {% endfor %}
+        </div>
+        <h2 style="text-transform:uppercase">{{name}} login</h2><br>
+        <div class="login-form">
+            <form method="POST">
+                {% csrf_token %}
+                <input autocomplete="off" style="color:#000b46" name="email" class="form-login" type="email" placeholder="Email"
+                       required="required"><br>
+                <input autocomplete="off" style="color:#000b46" name="password" class="form-login" type="password" placeholder="Password"
+                       required="required"><br>
+                <input autocomplete="off" type="submit" class="btn medilife-btn" value="login">
+            </form>
+        </div>
+        {% if 'admin' == name %}
+        {%else%}
+        <a href="/{{name}}_register/">New User Registration</a><br><br>
+        {%endif%}
+    </div>
+</center>
+{% endblock %}

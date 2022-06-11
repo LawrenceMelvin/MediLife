@@ -1,0 +1,51 @@
+{% extends 'doctor_page.html' %}
+{% block content %}
+{% load static %}
+
+<div class="limiter" style="background-size:cover;background-image: url({% static 'img/bg-img/about1.jpg'%}"><div>
+            {% for m in messages %}
+                <p style="font-size:20px;text-transform:uppercase;top:25%;left:45%;position:absolute"><i>{{m}}</i></p>
+            {% endfor %}
+        </div>
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+
+							<tr class="table100-head">
+								<th class="column1">Pharmacy</th>
+								<th class="column2">Tablet name</th>
+								<th class="column3">tablet dosage</th>
+								<th class="column4">Suggest</th>
+								<th class="column5" style="text-align:center;">Suggested tablet</th>
+								<th>request doctor</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for d in data %}
+								<tr>
+									<td class="column1">{{d.pharmacy}}</td>
+									<td class="column2">{{d.tablet}}</td>
+									<td class="column3">{{d.dosage}}</td>
+									{% if d.doctor_boolean is False %}
+										<td><a href="/doctor/tablet_request/{{d.id}}">Suggest</a></td>
+									{% endif %}
+									{% if d.doctor_boolean is True %}
+										<td><a href="/doctor/tablet_request/{{d.id}}">Alter</a></td>
+									{% endif %}
+									{% if d.recomended %}
+										<td style="text-align:center;">{{d.recomended}}</td>
+									{% endif %}
+									{% if d.recomended ==  "" %}
+										<td style="text-align:center;">{{d.recomended}}</td>
+									{% endif %}
+								</tr>
+                            {% endfor %}
+                        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

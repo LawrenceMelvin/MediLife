@@ -1,0 +1,65 @@
+{% extends 'pharmacy_page.html' %}
+{% block content %}
+{% load static %}
+
+<div class="limiter" style="background-size:cover;background-image: url({% static 'img/bg-img/about1.jpg'%}">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+
+							<tr class="table100-head">
+								<th class="column1">Pharmacy</th>
+								<th class="column2">Tablet name</th>
+								<th class="column3">tablet dosage</th>
+								<th class="column4">Accept</th>
+								<th class="column5" style="text-align:center;">accepted by</th>
+								<th style="text-align:center;">request doctor</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							{% for d in data %}
+								<tr>
+									<td class="column1">{{d.pharmacy}} Pharmacy</td>
+									<td class="column2">{{d.tablet}}</td>
+									<td class="column3">{{d.dosage}}</td>
+									{% if d.doctor_boolean is False %}
+										{% if d.pharmacy_boolean is False %}
+											<td  class="column6"><a href="/accept/{{name}}/{{d.pk}}">Accept</a></td>
+											<td style="text-align:center;">-</td>
+										{% endif %}
+									{% endif %}
+									{% if d.doctor_boolean is False %}
+										{% if d.pharmacy_boolean is True %}
+											<td class="column6">accepted</td>
+											<td style="text-align:center;">{{d.accepted_pharmacy}}</td>
+										{% endif %}
+									{% endif %}
+									{% if d.doctor_boolean is True %}
+											<td class="column6">Doctor recommended</td>
+											<td style="text-align:center;">{{d.doctor}} </td>
+									{% endif %}
+
+									{% if d.pharmacy in name %}
+										{% if d.doctor_boolean is False %}
+											{% if d.pharmacy_boolean is False %}
+												<td style="text-align:center;"><a  href="/{{name}}/doctor/{{d.pk}}">send to doctor</a></td>
+											{% endif %}
+										{% endif %}
+
+										{% if d.doctor_boolean is True %}
+											<td style="text-align:center;"><a>sent</a><br>{% if d.recomended %} Recommended - {{d.recomended}}{% endif %} </td>
+										{% endif %}
+									{% endif %}
+								</tr>
+
+								{% endfor %}
+                        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

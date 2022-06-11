@@ -1,0 +1,23 @@
+{% extends 'index-2.html' %}
+{% block content %}
+{% load static %}
+<center>
+    <div class="breadcumb-area bg-img gradient-background-overlay " style="height:500px;background-image: url({% static 'img/bg-img/breadcumb2.jpg'%});"><br>
+<div>
+                            {% for m in messages %}
+                              <p style="font-size:20px;text-transform:uppercase;top:33%;left:45%;position:absolute"><i>{{m}}</i></p><br><br>
+                            {% endfor %}
+                        </div>
+        <h2 style="text-transform:uppercase">{{name}} login</h2><br>
+        <div class="login-form">
+              <form method="POST">
+                  {% csrf_token  %}
+                    <input autocomplete="off" name="email" class="form-login" type="email" placeholder="Email" required="required" style="color:black"><br>
+                    <input autocomplete="off" name="password" class="form-login" type="password" placeholder="Password" required="required" style="color:black"><br>
+                    <input autocomplete="off" type="submit" class="btn medilife-btn" value="login">
+              </form>
+        </div>
+
+    </div>
+</center>
+{% endblock %}
